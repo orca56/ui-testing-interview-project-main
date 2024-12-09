@@ -1,7 +1,7 @@
 import { test as it, expect } from '@playwright/test';
 
 it('should have the copyright text in the footer', async ({ page }) => {
-    // Navigate to the website
+    // Navigate to the product website
     await page.goto('https://wearecws.com/');
 
     // Locate the footer element
