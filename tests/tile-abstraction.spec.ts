@@ -11,7 +11,6 @@ const it = test.extend<{ homePage: HomePage }>({
 
 it('should have partner Tiles present on homepage', async ({ page, homePage }) => {
   await homePage.findTile('Snyk', 'Get the most out of your Snyk implementation');
-  await homePage.findTile('Snyk', 'Get the most out of your Snyk implementation');
   await homePage.findTile('Gitlab', 'Optimize your developer');
 
   await page.locator('section').filter({ hasText: 'SecureNo more sleepless' }).screenshot({ path: './screenshots/homepage/tiles-solution-and-partners.png' });
