@@ -13,6 +13,8 @@ it('should have partner Tiles present on homepage', async ({ page, homePage }) =
   await homePage.findTile('Snyk', 'Get the most out of your Snyk implementation');
   await homePage.findTile('Snyk', 'Get the most out of your Snyk implementation');
   await homePage.findTile('Gitlab', 'Optimize your developer');
+
+  await page.locator('section').filter({ hasText: 'SecureNo more sleepless' }).screenshot({ path: './screenshots/homepage/tiles-solution-and-partners.png' });
 });
 
 it('should have solution tiles present on homepage', async ({ homePage }) => {
@@ -23,8 +25,10 @@ it('should have solution tiles present on homepage', async ({ homePage }) => {
   await homePage.findTile('Migrate', 'Seamlessly move your');
 });
 
-it('should have resources cards present on homepage', async ({ homePage }) => {
+it('should have resources cards present on homepage', async ({ page, homePage }) => {
   await homePage.findTile('Global telecommunications', 'Securing a seamless move to');
   await homePage.findTile('Optimizing web-based ERP', 'Decreasing developer overhead');
   await homePage.findTile('Securing fintech startups', 'Facilitating Recimply’s');
+
+  await page.locator('section').filter({ hasText: 'Adapting cloud architecture' }).screenshot({ path: './screenshots/homepage/tiles-resources.png' });
 });

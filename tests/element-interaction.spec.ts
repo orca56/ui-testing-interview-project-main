@@ -25,3 +25,31 @@ it('should show a form when clicking contact button', async ({ page }) => {
     await expect(page.locator('textarea[name="message"]')).toBeVisible();
     await expect(page.locator('button[type="submit"]')).toBeVisible();
 });
+
+/** 
+ * To take screenshots we use `Locator.screenshot()` method. It's configurable and useful to ensure steps test scenario goes right.
+ * Video recording feature can be turned on in playwright.config file. It's configurable depending on the request (e.g. we want all recording or just for failing scenarios, retries, etc).
+ *
+ * Video recordings and screenshots provide additional details for some specific test case. In case of issue it helps with debugging and resolving.
+ */
+it('should gather "startup solution advantages" element on solutions/get-started page', async ({ page }) => {
+    await page.goto('https://wearecws.com/');
+
+    await page.getByText('Solutions', { exact: true }).first().click();
+    await page.getByRole('banner').getByRole('link', { name: 'Startup Solutions' }).click();
+
+    await page.locator('div').filter({ hasText: 'Avoid architecture headaches.' }).nth(1).screenshot({ path: './screenshots/solution/get-started-advantages.png' });
+});
+
+it('should gather filled contact-us form from contact-us page', async ({ page }) => {
+    await page.goto('https://wearecws.com/');
+    await page.getByRole('button', { name: 'Contact', exact: true }).click();
+
+    await page.getByPlaceholder('First Name *').fill('John');
+    await page.getByPlaceholder('Last Name *').fill('Doe');
+    await page.getByPlaceholder('Email Address *').fill('js@gmail.com');
+    await page.getByPlaceholder('Phone Number').fill('+3999299192');
+    await page.locator('textarea[name="message"]').fill('Test summary message');
+
+    await page.locator('div').filter({ hasText: 'Let\'s get in touchWe can\'t' }).nth(1).screenshot({ path: './screenshots/contact-us/filled-form.png' });
+});
